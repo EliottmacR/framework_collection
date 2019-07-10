@@ -52,19 +52,33 @@
 
 F_URL = "https://raw.githubusercontent.com/EliottmacR/framework_collection/master/"
 
+-- if CASTLE_PREFETCH then
+  -- CASTLE_PREFETCH({
+    -- F_URL .. "sugarcoat/sugarcoat.lua",
+    -- F_URL .. "game_list.lua",
+    -- F_URL .. "glyphs.png",
+    -- F_URL .. "HungryPro.ttf"
+  -- })
+-- end
+
+
+
+-- require(F_URL .. "sugarcoat/sugarcoat")
+-- require(F_URL .. "game_list")
+
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
-    F_URL .. "sugarcoat/sugarcoat.lua",
-    F_URL .. "game_list.lua",
-    F_URL .. "glyphs.png",
-    F_URL .. "HungryPro.ttf"
+    "sugarcoat/sugarcoat.lua",
+    "game_list.lua",
+    "glyphs.png",
+    "HungryPro.ttf"
   })
 end
 
 
 
-require(F_URL .. "sugarcoat/sugarcoat")
-require(F_URL .. "game_list")
+require("sugarcoat/sugarcoat")
+require("game_list")
 sugar.utility.using_package(sugar.S, true)
 
 -- forward declarations (local):
