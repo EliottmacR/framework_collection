@@ -234,7 +234,7 @@ function load_palette()
 end
 
 function init_glyphs()
-  load_png("glyphs", F_URL .. "glyphs.png", { 0x000000, 0xffffff, 0x888888}, true)
+  load_png("glyphs", "glyphs.png", { 0x000000, 0xffffff, 0x888888}, true)
   spritesheet_grid(16, 16)
   palt(0, true)
 end
