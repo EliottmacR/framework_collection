@@ -1,14 +1,14 @@
 sugar = sugar or {}
 sugar.gfx = sugar.gfx or {}
 
-require("sugarcoat/debug")
-require("sugarcoat/utility")
-require("sugarcoat/maths")
-require("sugarcoat/window")
-require("sugarcoat/text")
+require("debug")
+require("utility")
+require("maths")
+require("window")
+require("text")
 
-local _D = require("sugarcoat/gfx_vault")
-local events = require("sugarcoat/sugar_events")
+local _D = require("gfx_vault")
+local events = require("sugar_events")
 local _flr = math.floor
 
 

@@ -1,10 +1,10 @@
 sugar = sugar or {}
 sugar.gfx = sugar.gfx or {}
 
-require("sugarcoat/debug")
-require("sugarcoat/utility")
+require("debug")
+require("utility")
 
-local _D = require("sugarcoat/gfx_vault")
+local _D = require("gfx_vault")
 
 
 local function spritesheet(surf_key)

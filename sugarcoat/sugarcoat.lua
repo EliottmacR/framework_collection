@@ -21,7 +21,7 @@ end
 sugar = {}
 sugar.S = {}
 
-local events = require("sugarcoat/sugar_events")
+local events = require("sugar_events")
 
 local active_canvas, active_color
 local old_love = love
@@ -155,16 +155,16 @@ if castle then
   end
 end
 
-require("sugarcoat/utility")
-require("sugarcoat/debug")
-require("sugarcoat/maths")
-require("sugarcoat/gfx")
-require("sugarcoat/sprite")
-require("sugarcoat/text")
-require("sugarcoat/time")
-require("sugarcoat/input")
-require("sugarcoat/audio")
-require("sugarcoat/core")
+require("utility")
+require("debug")
+require("maths")
+require("gfx")
+require("sprite")
+require("text")
+require("time")
+require("input")
+require("audio")
+require("core")
 
 for k,v in pairs(_prev_exist) do
   love[k] = v

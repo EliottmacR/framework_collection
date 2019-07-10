@@ -1,7 +1,7 @@
 sugar = sugar or {}
 
-require("sugarcoat/debug")
-require("sugarcoat/utility")
+require("debug")
+require("utility")
 
 local _sfx_map
 local _music_map
