@@ -215,7 +215,7 @@ local function init_gfx(window_name, w, h, scale)
   
   
   -- default font
-  sugar.gfx.load_font("sugarcoat/TeapotPro.ttf", 16, _D.default_font)
+  -- sugar.gfx.load_font("sugarcoat/TeapotPro.ttf", 16, _D.default_font)
   sugar.gfx.use_font()
   sugar.gfx.printp()
   sugar.gfx.printp_color()
