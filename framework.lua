@@ -66,6 +66,8 @@ F_URL = "https://raw.githubusercontent.com/EliottmacR/framework_collection/maste
 -- require(F_URL .. "sugarcoat/sugarcoat")
 -- require(F_URL .. "game_list")
 
+require(F_URL .. "game_list")
+
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
     "sugarcoat/sugarcoat.lua",
@@ -78,7 +80,6 @@ end
 
 
 require(F_URL .. "sugarcoat/sugarcoat")
-require("game_list")
 sugar.utility.using_package(sugar.S, true)
 
 -- forward declarations (local):
