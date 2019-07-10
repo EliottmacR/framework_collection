@@ -54,10 +54,10 @@ F_URL = "https://raw.githubusercontent.com/EliottmacR/framework_collection/maste
 
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
-    "sugarcoat/sugarcoat.lua",
-    "game_list.lua",
-    "glyphs.png",
-    "HungryPro.ttf"
+    F_URL .. "sugarcoat/sugarcoat.lua",
+    F_URL .. "game_list.lua",
+    F_URL .. "glyphs.png",
+    F_URL .. "HungryPro.ttf"
   })
 end
 
@@ -76,6 +76,8 @@ local in_controls, in_pause, in_gameover
 local ctrl_descriptions, ctrl_active
 local light_table
 
+local GW, GH = 256, 192
+
 function love.load()
   
   if first_time_launch then -- global variable in .castle linked main
@@ -86,8 +88,7 @@ function love.load()
     love.update = function () end
     love.draw   = function () end
     
-  else -- inside collection loop of game.
-    GW, GH = 256, 192
+  -- else -- inside collection loop of game.
     init_sugar("Remy & Eliott's Collection", GW, GH, 3)
     
     -- setting default game info
@@ -106,7 +107,7 @@ function love.load()
   
   end
   
-  if _init then _init() end
+  if _init then _init(GW, GH) end
 
 end
 
