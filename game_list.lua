@@ -17,12 +17,12 @@ games = {
   -- return games[game_id].path  
 -- end
   
-function get_id_from_name(game_name)
-  if not game_name then return end
-  for ind, game in pairs(games) do
-    if game.name == game_name then return ind end  
-  end  
-end
+-- function get_id_from_name(game_name)
+  -- if not game_name then return end
+  -- for ind, game in pairs(games) do
+    -- if game.name == game_name then return ind end  
+  -- end  
+-- end
   
   
   
