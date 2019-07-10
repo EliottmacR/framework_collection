@@ -54,6 +54,7 @@
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
     "sugarcoat/sugarcoat.lua",
+    "game_list.lua",
     "glyphs.png",
     "HungryPro.ttf"
   })
