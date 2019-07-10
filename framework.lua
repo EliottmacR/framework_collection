@@ -76,7 +76,7 @@ function love.load()
   
   if first_time_launch then -- global variable in .castle linked main 
   
-    love.update = function () end
+    love.update = function () print("here") end
     love.draw = function () end
     
   else -- inside collection loop of game.
