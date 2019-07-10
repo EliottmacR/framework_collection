@@ -67,7 +67,7 @@ F_URL = "https://raw.githubusercontent.com/EliottmacR/framework_collection/maste
 -- require(F_URL .. "game_list")
 
 require(F_URL .. "game_list")
-require(F_URL .. "sugarcoat/sugarcoat")
+sugar = require(F_URL .. "sugarcoat/sugarcoat")
 
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({

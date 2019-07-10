@@ -18,8 +18,8 @@ if CASTLE_PREFETCH then
   })
 end
 
-_G.sugar = {}
-_G.sugar.S = {}
+sugar = {}
+sugar.S = {}
 
 local events = require("sugar_events")
 
@@ -215,3 +215,5 @@ if SUGAR_SERVER_MODE then
     end
   end
 end
+
+return sugar
