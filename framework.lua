@@ -78,6 +78,7 @@ local light_table
 function love.load()
   
   if first_time_launch then -- global variable in .castle linked main 
+    get_id_from_name()
     love.update = function () end
     love.draw = function () end
     
