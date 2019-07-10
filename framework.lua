@@ -61,10 +61,10 @@ if CASTLE_PREFETCH then
 end
 
 
-import "game_list"
 
 require("sugarcoat/sugarcoat")
 sugar.utility.using_package(sugar.S, true)
+require("game_list")
 
 -- forward declarations (local):
 local load_palette, load_controls
