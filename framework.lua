@@ -65,7 +65,7 @@
 -- require(F_URL .. "game_list")
 
 require("games/game_list")
-sugar = require("sugarcoat/sugarcoat")
+require("sugarcoat/sugarcoat")
 
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
