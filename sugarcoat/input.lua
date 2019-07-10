@@ -1,7 +1,7 @@
 sugar = sugar or {}
 
-require("debug")
-require("utility")
+require("sugarcoat/debug")
+require("sugarcoat/utility")
 
 local _init = false
 local _exit_required = false
@@ -296,8 +296,8 @@ end
 
 
 
-local events = require("sugar_events")
-local _D = require("gfx_vault")
+local events = require("sugarcoat/sugar_events")
+local _D = require("sugarcoat/gfx_vault")
 
 local function _button_press_state(type, key, state, controller)
   local butts = _event_inputs[type][key]

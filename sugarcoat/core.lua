@@ -1,12 +1,12 @@
 sugar = sugar or {}
 
-require("debug")
-require("utility")
-require("gfx")
-require("input")
-require("time")
-require("audio")
-require("maths")
+require("sugarcoat/debug")
+require("sugarcoat/utility")
+require("sugarcoat/gfx")
+require("sugarcoat/input")
+require("sugarcoat/time")
+require("sugarcoat/audio")
+require("sugarcoat/maths")
 
 local S = sugar
 

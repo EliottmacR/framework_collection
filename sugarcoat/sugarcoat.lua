@@ -1,27 +1,27 @@
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
-    "TeapotPro.ttf",
-    "audio.lua",
-    "core.lua",
-    "debug.lua",
-    "gfx.lua",
-    "gfx_vault.lua",
-    "input.lua",
-    "maths.lua",
-    "map.lua",
-    "sprite.lua",
-    "text.lua",
-    "time.lua",
-    "utility.lua",
-    "window.lua",
-    "sugarcoat.lua"
+    "sugarcoat/TeapotPro.ttf",
+    "sugarcoat/audio.lua",
+    "sugarcoat/core.lua",
+    "sugarcoat/debug.lua",
+    "sugarcoat/gfx.lua",
+    "sugarcoat/gfx_vault.lua",
+    "sugarcoat/input.lua",
+    "sugarcoat/maths.lua",
+    "sugarcoat/map.lua",
+    "sugarcoat/sprite.lua",
+    "sugarcoat/text.lua",
+    "sugarcoat/time.lua",
+    "sugarcoat/utility.lua",
+    "sugarcoat/window.lua",
+    "sugarcoat/sugarcoat.lua"
   })
 end
 
 sugar = {}
 sugar.S = {}
 
-local events = require("sugar_events")
+local events = require("sugarcoat/sugar_events")
 
 local active_canvas, active_color
 local old_love = love
@@ -155,16 +155,16 @@ if castle then
   end
 end
 
-sugar.utility = require("utility")
-sugar.debug = require("debug")
-sugar.maths = require("maths")
-sugar.gfx = require("gfx")
-sugar.sprite = require("sprite")
-sugar.text = require("text")
-sugar.time = require("time")
-sugar.input = require("input")
-sugar.audio = require("audio")
-sugar.core = require("core")
+require("sugarcoat/utility")
+require("sugarcoat/debug")
+require("sugarcoat/maths")
+require("sugarcoat/gfx")
+require("sugarcoat/sprite")
+require("sugarcoat/text")
+require("sugarcoat/time")
+require("sugarcoat/input")
+require("sugarcoat/audio")
+require("sugarcoat/core")
 
 for k,v in pairs(_prev_exist) do
   love[k] = v
@@ -215,5 +215,3 @@ if SUGAR_SERVER_MODE then
     end
   end
 end
-
-return sugar

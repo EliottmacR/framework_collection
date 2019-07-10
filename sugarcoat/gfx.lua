@@ -1,14 +1,14 @@
 sugar = sugar or {}
 sugar.gfx = sugar.gfx or {}
 
-require("debug")
-require("utility")
-require("maths")
-require("window")
-require("text")
+require("sugarcoat/debug")
+require("sugarcoat/utility")
+require("sugarcoat/maths")
+require("sugarcoat/window")
+require("sugarcoat/text")
 
-local _D = require("gfx_vault")
-local events = require("sugar_events")
+local _D = require("sugarcoat/gfx_vault")
+local events = require("sugarcoat/sugar_events")
 local _flr = math.floor
 
 
@@ -215,7 +215,7 @@ local function init_gfx(window_name, w, h, scale)
   
   
   -- default font
-  sugar.gfx.load_font(F_URL .. "sugarcoat/TeapotPro.ttf", 16, _D.default_font)
+  sugar.gfx.load_font("sugarcoat/TeapotPro.ttf", 16, _D.default_font)
   sugar.gfx.use_font()
   sugar.gfx.printp()
   sugar.gfx.printp_color()
