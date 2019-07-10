@@ -102,8 +102,6 @@ function love.load()
     init_glyphs()
     load_controls()
     
-    init_chain()
-    
     init_controls_screen()
   
   end
