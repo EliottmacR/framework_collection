@@ -1,6 +1,4 @@
-
-F_URL = "https://raw.githubusercontent.com/EliottmacR/framework_collection/master/"
-require(F_URL .. "framework")
+require("framework")
 
 _palette = {0, 17, 14, 13, 20, 4}
 

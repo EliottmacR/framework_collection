@@ -1,6 +1,6 @@
 
 _game_list = {
-  {name = "fishing_game", path = "https://raw.githubusercontent.com/EliottmacR/framework_collection/master/games/fishing_game.lua"}
+  {name = "fishing_game", path = "https://raw.githubusercontent.com/EliottmacR/framework_collection/master/fishing_game.lua"}
 }
 
 function get_path_from_id(game_id)
