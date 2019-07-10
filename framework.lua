@@ -82,7 +82,7 @@ function love.load()
     -- if get_id_from_name then get_id_from_name() end
     -- local game_id = get_id_from_name(game_name)
     -- launch_game(game_id)
-    love.init   = function ()
+    _init       = function ()
                     local game_id = get_id_from_name(game_name)
                     launch_game(game_id)            
                   end
