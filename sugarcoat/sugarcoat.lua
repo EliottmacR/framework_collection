@@ -155,16 +155,16 @@ if castle then
   end
 end
 
-require("utility")
-require("debug")
-require("maths")
-require("gfx")
-require("sprite")
-require("text")
-require("time")
-require("input")
-require("audio")
-require("core")
+sugar.utility = require("utility")
+sugar.debug = require("debug")
+sugar.maths = require("maths")
+sugar.gfx = require("gfx")
+sugar.sprite = require("sprite")
+sugar.text = require("text")
+sugar.time = require("time")
+sugar.input = require("input")
+sugar.audio = require("audio")
+sugar.core = require("core")
 
 for k,v in pairs(_prev_exist) do
   love[k] = v
