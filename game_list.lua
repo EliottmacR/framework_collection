@@ -7,9 +7,11 @@
 -- }
 
 games = {
-  {name = "fishing_game", path = "https://raw.githubusercontent.com/EliottmacR/FishingGame/master/game_template.lua"},
+  {name = "fishing_game", path = "https://raw.githubusercontent.com/EliottmacR/FishingGame/master/game_template.lua"}
 }
 
+
+function get_id_from_name(game_name) end
 
 function get_path_from_id(game_id)
   if not game_id then return end
