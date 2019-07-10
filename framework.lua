@@ -102,7 +102,7 @@ function love.load()
     love.update = function () end
     love.draw   = function () end
     
-  -- else -- inside collection loop of game.
+  else -- inside collection loop of game.
     init_sugar("Remy & Eliott's Collection", GW, GH, 3)
     
     -- setting default game info
