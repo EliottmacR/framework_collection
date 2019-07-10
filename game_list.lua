@@ -1,10 +1,3 @@
--- game = {
-  -- path = ""
--- }
-
--- games = {
-  -- id : game
--- }
 
 _game_list = {
   {name = "fishing_game", path = "https://raw.githubusercontent.com/EliottmacR/FishingGame/master/game_template.lua"}
@@ -21,10 +14,3 @@ function get_id_from_name(game_name)
     if game.name == game_name then return ind end  
   end  
 end
-
-local func = {
-  get_path_from_id = get_path_from_id,
-  get_id_from_name = get_id_from_name
-}
-
-return func
