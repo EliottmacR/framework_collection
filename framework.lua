@@ -6,6 +6,8 @@
 -- - _difficulty : 0 is super easy, 100 should be near-impossible (we'll scale it internally - game 25 would have a difficulty of 100)
 
 -- here's what the player should define (as global)
+-- - _title: name of the game
+-- - _description: a one sentence description/instruction for the game
 -- - _palette : table of indexes pointing to which colors you want in the full palette (up to 8)
 -- - _controls : table listing the controls you're using in this game
 -- - 
@@ -38,7 +40,7 @@
 ----- shader?
 ---
 ----- control screen
---- control descriptions are stored in _ctrl_descriptions
+--- control descriptions are stored in ctrl_descriptions
 ---  ^ it goes {{inputs} = "desc"} -> inputs are all the inputs that have the same description
 ---
 ----- pause/settings button + panel
@@ -52,6 +54,7 @@
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
     "sugarcoat/sugarcoat.lua",
+    "framework/JSON.lua",
     "framework/glyphs.png",
     "framework/HungryPro.ttf"
   })
@@ -60,38 +63,136 @@ end
 
 require("sugarcoat/sugarcoat")
 sugar.utility.using_package(sugar.S, true)
-local JSON = require("JSON")
+local JSON = require("framework/JSON")
 
 -- forward declarations (local):
-local load_palette, load_controls, update_controls
-local _ctrl_descriptions, _ctrl_active
+local load_palette, load_controls
+local update_controls
+local update_controls_screen, draw_controls_screen
+
+local in_controls, in_pause, in_gameover
+local ctrl_descriptions, ctrl_active
+local light_table
 
 function love.load()
-  GW = 192
-  GH = 128
-  init_sugar("Paku~Boisu!", GW, GH, 3)
   
-  load_palette()
-  load_font("framework/HungryPro.ttf", 16, "main", true)
-  init_glyphs()
-  load_controls()
+  if first_time_launch then -- global variable in .castle linked main 
   
-  init_chain()
+    love.update = function () end
+    love.draw = function () end
+    
+  else -- inside collection loop of game.
+
+    init_sugar("Remy & Eliott's Collection", 256, 192, 3)
+    
+    -- setting default game info
+    _title = _title or "[please set a title!]"
+    _description = _description or "[please set a description!]"
+    _palette = _palette or { 0, 1, 3, 19, 27, 28, 29 } -- greyish gradient
+    _controls = _controls or {}
+    
+    -- loading resources
+    load_palette()
+    load_font("framework/HungryPro.ttf", 16, "main", true)
+    init_glyphs()
+    load_controls()
+    
+    init_chain()
+    
+    init_controls_screen()
+  
+  end
   
   if _init then _init() end
+
 end
 
 function love.update()
   update_controls()
+
+  if in_controls then update_controls_screen() return end
 
   if _update then _update() end
 end
 
 function love.draw()
   if _draw then _draw() end
+  
+  if in_controls then draw_controls_screen() return end
 end
 
 
+
+-- controls screen
+
+function init_controls_screen()
+  in_controls = 99
+  
+  -- define color_0, color_1 and color_2 here
+  
+  
+end
+
+function update_controls_screen()
+  if in_controls == 99 then
+    if btnp("start") then
+      in_controls = 1
+      in_controls = false
+    end
+  elseif in_controls then
+    in_controls = in_controls - dt()
+    
+    if in_controls <= 0 then
+      in_controls = false
+    end
+  end
+end
+
+function draw_controls_screen()
+  local lt = light_table
+  cls(lt[1])
+  
+  printp(0x0000, 0x0100, 0x0200, 0x0000)
+  printp_color(lt[#lt], lt[flr(#lt/2)], 0)
+  
+  local x,y = 0, 8
+  local space1, space2 = 16, 28
+  
+  x = (screen_w() - str_px_width(_title)) / 2
+  pprint(_title, x, y)
+  
+  x = (screen_w() - str_px_width(_description)) / 2
+  y = y + space2
+  pprint(_description, x, y)
+
+  y = y + space2
+  for _, d in ipairs(ctrl_descriptions) do
+    local str = ""
+    for _, v in ipairs(d[1]) do
+      str = str..v..", "
+    end
+    
+    str = str:sub(1, #str-2).." : "..d[2]
+    
+    x = (screen_w() - str_px_width(str)) / 2
+    
+    pprint(str, x, y)
+    
+    y = y + space1
+  end
+
+  -- draw controls
+  -- add controls sprite
+  
+  -- "press start to continue"
+  
+  if t()%1 < 0.75 then
+    local str = "Press START to continue!"
+    x = (screen_w() - str_px_width(str)) / 2
+    y = screen_h() - 16
+    pprint(str, x, y)
+  end
+end
 
 
 
@@ -99,7 +200,7 @@ end
 -- palette & glyphs
 
 function load_palette()
-  local full_palette, palette = {  -- tmp: Lux3K -- actual palette is to-do atm
+  local full_palette, palette = {  -- "Glassworks", by Trasevol_Dog B-)
     0x000000, 0x000020, 0x330818, 0x1a0f4d,
     0x990036, 0x660000, 0x992e00, 0x332708,
     0x001c12, 0x00591b, 0x118f45, 0x998a26,
@@ -113,6 +214,18 @@ function load_palette()
   if not _palette then _palette = {0, 29} end
   for i,c in ipairs(_palette) do
     palette[i] = full_palette[c+1]
+  end
+  
+  local light_ref = { 0, 5, 1, 2, 4, 3, 8, 12, 7, 6, 18, 19, 20, 9, 21, 13, 11, 10, 22, 17, 15, 23, 27, 14, 16, 24, 25, 28, 26, 29 }
+  
+  light_table = {}
+  
+  for i,lc in ipairs(light_ref) do
+    for j,c in ipairs(_palette) do
+      if c == lc then
+        add(light_table, j-1)
+      end
+    end
   end
   
   use_palette(palette)
@@ -158,13 +271,12 @@ end
 
 
 
-
 -- controls system
 
 local cur_x, cur_y, m_x, m_y = 0, 0, 0, 0
 local s_btn, s_btnv = btn, btnv
 function update_controls()
-  for k, d in pairs(_ctrl_active) do
+  for k, d in pairs(ctrl_active) do
     d.pstate = d.state
     
     if k == "left" then
@@ -205,22 +317,22 @@ function update_controls()
 end
 
 function btn(k)
-  local d = _ctrl_active[k]
+  local d = ctrl_active[k]
   return d and d.state
 end
 
 function btnp(k)
-  local d = _ctrl_active[k]
+  local d = ctrl_active[k]
   return d and d.state and not d.pstate
 end
 
 function btnr(k)
-  local d = _ctrl_active[k]
+  local d = ctrl_active[k]
   return d and d.pstate and not d.state
 end
 
 function btnv(k)
-  local d = _ctrl_active[k]
+  local d = ctrl_active[k]
   return d and d.value or 0
 end
 
@@ -263,11 +375,11 @@ function load_controls()
   
   player_assign_ctrlr(0, 0)
   
-  _ctrl_descriptions, _ctrl_active = {}, {}
+  ctrl_descriptions, ctrl_active = {}, {}
   
   for k, desc in pairs(_controls) do
     local b = true
-    for _,v in pairs(_ctrl_descriptions) do
+    for _,v in pairs(ctrl_descriptions) do
       if v[2] == desc then
         b = false
         add(v[1], k)
@@ -275,10 +387,10 @@ function load_controls()
     end
     
     if b then
-      add(_ctrl_descriptions, { {k}, desc})
+      add(ctrl_descriptions, { {k}, desc})
     end
     
-    _ctrl_active[k] = { state = false, pstate = false, value = 0}
+    ctrl_active[k] = { state = false, pstate = false, value = 0}
     
     register_btn(k, 0, bindings[k])
     
@@ -298,91 +410,36 @@ function load_controls()
       register_btn("ry_axis", 0, bindings.ry_axis)
     end
   end
+
+  register_btn("start", 0, { input_id("keyboard_scancode", "return"),
+                             input_id("controller_button", "start") })
+  ctrl_active["start"] = { state = false, pstate = false, value = 0}
 end
+
+
+
 
 -- chain system
 
-game_previews = {}
+-- you either init the chain or init a link
+-- init_chain() will be called by the first init_game from the framework
 
-function init_chain()
+-- 
+-- 
+-- 
+-- 
+
+
+
+
+
+function init_chain()  
+  -- local referrer = castle.game.getReferrer()
+  -- local params = castle.game.getInitialParams()
   
-  local referrer = castle.game.getReferrer()
-  local params = castle.game.getInitialParams()
-  
-  if params then
-    _objects = params.objects or {}
-    _game_registery = params._game_registery or {}
-    
-    global_score = params.global_score or 0
-    battery = params.battery or 100
-    
-  end
-  
-  if not _game_registery then 
-    local g_r_url = "https://raw.githubusercontent.com/TRASEVOL-DOG/Collection/master/game_registery"
-    local https = require("ssl.https")
-    local body = https.request(g_r_url)
-    -- local body = [[{
-  -- "games" : {
-    -- "example" : {
-      -- "url_main" : "https://raw.githubusercontent.com/TRASEVOL-DOG/Collection/master/game_template.castle",
-      -- "url_preview": "https://raw.githubusercontent.com/TRASEVOL-DOG/Collection/master/preview.png",
-      -- "player_spr" : 1
-    -- },
-    -- "Fishing Game" : {
-      -- "url_main" : "https://raw.githubusercontent.com/TRASEVOL-DOG/Collection/master/game_template.castle",
-      -- "url_preview": "https://raw.githubusercontent.com/TRASEVOL-DOG/Collection/master/preview.png",
-      -- "player_spr" : 3
-    -- },
-    -- "Lumberjack Game" : {
-      -- "url_main" : "https://raw.githubusercontent.com/TRASEVOL-DOG/Collection/master/game_template.castle",
-      -- "url_preview": "https://raw.githubusercontent.com/TRASEVOL-DOG/Collection/master/preview.png",
-      -- "player_spr" : 6
-    -- }
-  -- }
--- }
--- ]]
-    _game_registery = JSON:decode(body)    
-    
-    local translated_games = {}
-    
-    for ind_g, g in pairs(_game_registery) do 
-      local i = 1
-      for ind_l, l in pairs(g) do
-        local name = ind_l
-        local url_main = l["url_main"]
-        local url_preview = l["url_preview"]
-        local player_spr = l["player_spr"]
-        translated_games[i] = {
-          name = name,
-          url_main = url_main,
-          url_preview = url_preview,
-          player_spr = player_spr        
-        }      
-        add(game_previews, load_png(i, translated_games[i].url_preview))
-        i = i + 1
-      end    
-    end
-    
-    _game_registery = translated_games
-    
-    -- for ind_g, g in pairs(games) do 
-      -- local i = 1
-      -- for ind_l, l in pairs(g) do  
-        -- for name, v in pairs(l) do 
-          -- log(name)
-          -- local url = url or (name == "url_preview") and v 
-        -- end
-        -- g.index = i
-        -- log("g.url_preview " .. g.url_preview)   
-        -- add(game_previews, load_png(g.index, g.url_preview))
-        -- i = i + 1
-      
-      -- end    
-    -- end
-    
-    
-  end  
+  -- if params then
+    -- global_score = params.global_score or 0    
+  -- end  
 end
 
 
