@@ -60,6 +60,8 @@ if CASTLE_PREFETCH then
 end
 
 
+require("game_list")
+
 require("sugarcoat/sugarcoat")
 sugar.utility.using_package(sugar.S, true)
 
@@ -76,7 +78,7 @@ function love.load()
   
   if first_time_launch then -- global variable in .castle linked main 
   
-    love.update = function () print("here") end
+    love.update = function () end
     love.draw = function () end
     
   else -- inside collection loop of game.
@@ -414,31 +416,30 @@ function load_controls()
   ctrl_active["start"] = { state = false, pstate = false, value = 0}
 end
 
+-- game loading
 
-
-
--- chain system
-
--- you either init the chain or init a link
--- init_chain() will be called by the first init_game from the framework
-
--- 
--- 
--- 
--- 
-
-
-
-
-
-function init_chain()  
-  -- local referrer = castle.game.getReferrer()
-  -- local params = castle.game.getInitialParams()
+function launch_game( game_id )
   
-  -- if params then
-    -- global_score = params.global_score or 0    
-  -- end  
+  local path = get_path_from_id(game_id)
+    
+  if path then
+  
+    local params = castle.game.getInitialParams()
+    local battery_level
+    local global_score
+    
+    if params then 
+      battery_level = params.battery_level or 100
+      global_score = params.global_score or 0    
+    end
+    
+    castle.game.load(
+        path, {
+        battery_level = battery_level,
+        global_score = global_score
+      }
+    )
+    
+  end
+  
 end
-
-
--- https://raw.githubusercontent.com/EliottmacR/Collection/master/game_template.castle
