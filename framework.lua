@@ -54,7 +54,7 @@
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
     "sugarcoat/sugarcoat.lua",
-    "sugarcoat/game_list.lua",
+    -- "sugarcoat/game_list.lua",
     "game_list.lua",
     "glyphs.png",
     "HungryPro.ttf"
@@ -79,8 +79,15 @@ local light_table
 function love.load()
   
   if first_time_launch then -- global variable in .castle linked main 
-    get_id_from_name()
-    love.update = function () end
+    if get_id_from_name then get_id_from_name()
+  -- local game_id = get_id_from_name(game_name)
+  -- launch_game(game_id)
+    love.update = function () 
+                    if get_id_from_name then 
+                      get_id_from_name() 
+                      log("here") 
+                    end 
+                  end
     love.draw = function () end
     
   else -- inside collection loop of game.
