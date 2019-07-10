@@ -78,7 +78,6 @@ if CASTLE_PREFETCH then
   })
 end
 
-sugar.utility.using_package(sugar.S, true)
 
 -- forward declarations (local):
 local load_palette, load_controls
@@ -92,6 +91,8 @@ local light_table
 local GW, GH = 256, 192
 
 function love.load()
+
+  sugar.utility.using_package(sugar.S, true)
   
   if first_time_launch then -- global variable in .castle linked main
     _init       = function ()
