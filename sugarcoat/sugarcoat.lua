@@ -18,8 +18,8 @@ if CASTLE_PREFETCH then
   })
 end
 
-sugar = {}
-sugar.S = {}
+_G.sugar = {}
+_G.sugar.S = {}
 
 local events = require("sugar_events")
 
