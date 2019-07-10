@@ -64,7 +64,6 @@ end
 
 require("sugarcoat/sugarcoat")
 sugar.utility.using_package(sugar.S, true)
-game_list = require("game_list")
 
 -- forward declarations (local):
 local load_palette, load_controls
@@ -78,7 +77,7 @@ local light_table
 function love.load()
   
   if first_time_launch then -- global variable in .castle linked main 
-  
+    get_path_from_id()
     love.update = function () end
     love.draw = function () end
     
