@@ -104,7 +104,12 @@ function love.load()
     
   else -- inside collection loop of game.
     init_sugar("Remy & Eliott's Collection", GW, GH, 3)
-    
+    log("here")
+    log("here")
+    log("here")
+    log("here")
+    log("here")
+    log("here")
     -- setting default game info
     _title = _title or "[please set a title!]"
     _description = _description or "[please set a description!]"
