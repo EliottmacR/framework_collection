@@ -296,8 +296,8 @@ end
 
 
 
-local events = require("sugarcoat/sugar_events")
-local _D = require("sugarcoat/gfx_vault")
+local events = require(F_URL .. "sugarcoat/sugar_events")
+local _D = require(F_URL .. "sugarcoat/gfx_vault")
 
 local function _button_press_state(type, key, state, controller)
   local butts = _event_inputs[type][key]

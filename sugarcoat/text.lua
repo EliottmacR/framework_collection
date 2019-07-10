@@ -4,7 +4,7 @@ sugar.gfx = sugar.gfx or {}
 require(F_URL .. "sugarcoat/debug")
 require(F_URL .. "sugarcoat/utility")
 
-local _D = require("sugarcoat/gfx_vault")
+local _D = require(F_URL .. "sugarcoat/gfx_vault")
 
 
 local function load_font(ttf_filepath, size, key, use_it)
