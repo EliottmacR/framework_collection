@@ -64,7 +64,7 @@ end
 
 require("sugarcoat/sugarcoat")
 game_list = require("game_list")
-sugar.utility.using_package(sugar.S, true)
+-- sugar.utility.using_package(sugar.S, true)
 
 -- forward declarations (local):
 local load_palette, load_controls
