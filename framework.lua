@@ -91,7 +91,7 @@ function love.load()
     
     -- loading resources
     load_palette()
-    load_font("framework/HungryPro.ttf", 16, "main", true)
+    load_font("HungryPro.ttf", 16, "main", true)
     init_glyphs()
     load_controls()
     
@@ -230,7 +230,7 @@ function load_palette()
 end
 
 function init_glyphs()
-  load_png("glyphs", "framework/glyphs.png", { 0x000000, 0xffffff, 0x888888}, true)
+  load_png("glyphs", "glyphs.png", { 0x000000, 0xffffff, 0x888888}, true)
   spritesheet_grid(16, 16)
   palt(0, true)
 end
