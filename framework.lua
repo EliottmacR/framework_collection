@@ -61,7 +61,7 @@ if CASTLE_PREFETCH then
 end
 
 
-require("game_list")
+import "game_list"
 
 require("sugarcoat/sugarcoat")
 sugar.utility.using_package(sugar.S, true)
