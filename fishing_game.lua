@@ -61,7 +61,7 @@ function _draw()
   
   -- name of this game
     print("Fishing Game", GW / 2 - sugar.gfx.str_px_width("Fishing Game")/2, 2, flr(t()* 3))  
-    
+    log("here")
   -- objects
   -- for _, obj in pairs(_objects) do
     -- glyph(obj.spr, obj.p.x, obj.p.y, 16, 16, 2*t(), 2, 3)  
