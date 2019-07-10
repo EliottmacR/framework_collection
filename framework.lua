@@ -82,13 +82,12 @@ function love.load()
     -- if get_id_from_name then get_id_from_name() end
     -- local game_id = get_id_from_name(game_name)
     -- launch_game(game_id)
-    love.update = function () 
-                    if get_id_from_name then 
-                      get_id_from_name() 
-                      log("here") 
-                    end 
+    love.init   = function ()
+                    local game_id = get_id_from_name(game_name)
+                    launch_game(game_id)            
                   end
-    love.draw = function () end
+    love.update = function () end
+    love.draw   = function () end
     
   else -- inside collection loop of game.
 
