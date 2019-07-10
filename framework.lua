@@ -54,10 +54,10 @@ F_URL = "https://raw.githubusercontent.com/EliottmacR/framework_collection/maste
 
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
-    F_URL .. "sugarcoat/sugarcoat.lua",
-    F_URL .. "game_list.lua",
-    F_URL .. "glyphs.png",
-    F_URL .. "HungryPro.ttf"
+    "sugarcoat/sugarcoat.lua",
+    "game_list.lua",
+    "glyphs.png",
+    "HungryPro.ttf"
   })
 end
 
@@ -98,7 +98,7 @@ function love.load()
     
     -- loading resources
     load_palette()
-    load_font("HungryPro.ttf", 16, "main", true)
+    load_font(F_URL .. "HungryPro.ttf", 16, "main", true)
     init_glyphs()
     load_controls()
     
