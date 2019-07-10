@@ -50,8 +50,6 @@
 ----- ui bar
 ---
 
-F_URL = "https://raw.githubusercontent.com/EliottmacR/framework_collection/master/"
-
 -- if CASTLE_PREFETCH then
   -- CASTLE_PREFETCH({
     -- F_URL .. "sugarcoat/sugarcoat.lua",
@@ -66,8 +64,8 @@ F_URL = "https://raw.githubusercontent.com/EliottmacR/framework_collection/maste
 -- require(F_URL .. "sugarcoat/sugarcoat")
 -- require(F_URL .. "game_list")
 
-require(F_URL .. "game_list")
-sugar = require(F_URL .. "sugarcoat/sugarcoat")
+require("games/game_list")
+sugar = require("sugarcoat/sugarcoat")
 
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
@@ -104,12 +102,7 @@ function love.load()
     
   else -- inside collection loop of game.
     init_sugar("Remy & Eliott's Collection", GW, GH, 3)
-    log("here")
-    log("here")
-    log("here")
-    log("here")
-    log("here")
-    log("here")
+    
     -- setting default game info
     _title = _title or "[please set a title!]"
     _description = _description or "[please set a description!]"
