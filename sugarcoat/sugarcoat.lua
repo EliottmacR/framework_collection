@@ -1,3 +1,6 @@
+
+F_URL = "https://raw.githubusercontent.com/EliottmacR/framework_collection/master/"
+
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
     F_URL .. "sugarcoat/TeapotPro.ttf",
@@ -20,8 +23,6 @@ end
 
 sugar = {}
 sugar.S = {}
-
--- F_URL = "https://raw.githubusercontent.com/EliottmacR/framework_collection/master/"
 
 local events = require(F_URL .. "sugarcoat/sugar_events")
 

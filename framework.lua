@@ -63,8 +63,8 @@ end
 
 
 
-require("sugarcoat/sugarcoat")
-require("game_list")
+require(F_URL .. "sugarcoat/sugarcoat")
+require(F_URL .. "game_list")
 sugar.utility.using_package(sugar.S, true)
 
 -- forward declarations (local):
