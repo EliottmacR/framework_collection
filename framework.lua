@@ -54,7 +54,6 @@
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
     "sugarcoat/sugarcoat.lua",
-    "framework/JSON.lua",
     "framework/glyphs.png",
     "framework/HungryPro.ttf"
   })
@@ -63,7 +62,6 @@ end
 
 require("sugarcoat/sugarcoat")
 sugar.utility.using_package(sugar.S, true)
-local JSON = require("framework/JSON")
 
 -- forward declarations (local):
 local load_palette, load_controls
