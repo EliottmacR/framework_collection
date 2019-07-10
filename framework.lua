@@ -50,32 +50,20 @@
 ----- ui bar
 ---
 
--- if CASTLE_PREFETCH then
-  -- CASTLE_PREFETCH({
-    -- F_URL .. "sugarcoat/sugarcoat.lua",
-    -- F_URL .. "game_list.lua",
-    -- F_URL .. "glyphs.png",
-    -- F_URL .. "HungryPro.ttf"
-  -- })
--- end
-
-
-
--- require(F_URL .. "sugarcoat/sugarcoat")
--- require(F_URL .. "game_list")
-
-require("games/game_list")
-require("sugarcoat/sugarcoat")
-
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
     "sugarcoat/sugarcoat.lua",
-    "game_list.lua",
+    "games/game_list.lua",
     "glyphs.png",
     "HungryPro.ttf"
   })
 end
 
+
+require("games/game_list")
+
+require("sugarcoat/sugarcoat")
+sugar.utility.using_package(sugar.S, true)
 
 -- forward declarations (local):
 local load_palette, load_controls
@@ -89,8 +77,6 @@ local light_table
 local GW, GH = 256, 192
 
 function love.load()
-
-  sugar.utility.using_package(sugar.S, true)
   
   if first_time_launch then -- global variable in .castle linked main
     _init       = function ()
@@ -111,7 +97,7 @@ function love.load()
     
     -- loading resources
     load_palette()
-    load_font(F_URL .. "HungryPro.ttf", 16, "main", true)
+    load_font("HungryPro.ttf", 16, "main", true)
     init_glyphs()
     load_controls()
     
