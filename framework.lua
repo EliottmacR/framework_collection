@@ -63,7 +63,7 @@ end
 
 
 require("sugarcoat/sugarcoat")
-require("game_list")
+game_list = require("game_list")
 sugar.utility.using_package(sugar.S, true)
 
 -- forward declarations (local):
