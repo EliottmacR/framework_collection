@@ -6,7 +6,7 @@
   -- id : game
 -- }
 
-abcdef = {
+_game_list = {
   {name = "fishing_game", path = "https://raw.githubusercontent.com/EliottmacR/FishingGame/master/game_template.lua"}
 }
 
@@ -14,15 +14,21 @@ abcdef = {
 
 function get_path_from_id(game_id)
   if not game_id then return end
-  return abcdef[game_id].path  
+  return _game_list[game_id].path  
 end
   
 function get_id_from_name(game_name)
   if not game_name then return end
-  for ind, game in pairs(abcdef) do
+  for ind, game in pairs(_game_list) do
     if game.name == game_name then return ind end  
   end  
 end
   
+local game_list =   { 
+  list = _game_list,
+  get_path_from_id = get_path_from_id,
+  get_id_from_name = get_id_from_name
+}
   
+return 
   
