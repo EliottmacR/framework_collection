@@ -54,13 +54,13 @@
 if CASTLE_PREFETCH then
   CASTLE_PREFETCH({
     "sugarcoat/sugarcoat.lua",
-    -- "sugarcoat/game_list.lua",
     "game_list.lua",
     "glyphs.png",
     "HungryPro.ttf"
   })
 end
 
+F_URL = "https://raw.githubusercontent.com/EliottmacR/framework_collection/master/"
 
 
 require("sugarcoat/sugarcoat")
@@ -98,7 +98,7 @@ function love.load()
     
     -- loading resources
     load_palette()
-    load_font("HungryPro.ttf", 16, "main", true)
+    load_font(F_URL .. "HungryPro.ttf", 16, "main", true)
     init_glyphs()
     load_controls()
     
