@@ -77,7 +77,7 @@ end
 
 
 
-require(F_URL .. "sugarcoat")
+require(F_URL .. "sugarcoat/sugarcoat")
 require("game_list")
 sugar.utility.using_package(sugar.S, true)
 
