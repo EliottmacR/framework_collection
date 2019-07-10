@@ -79,9 +79,9 @@ local light_table
 function love.load()
   
   if first_time_launch then -- global variable in .castle linked main 
-    if get_id_from_name then get_id_from_name()
-  -- local game_id = get_id_from_name(game_name)
-  -- launch_game(game_id)
+    -- if get_id_from_name then get_id_from_name() end
+    -- local game_id = get_id_from_name(game_name)
+    -- launch_game(game_id)
     love.update = function () 
                     if get_id_from_name then 
                       get_id_from_name() 
